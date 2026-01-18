@@ -75,9 +75,9 @@
                                         <a href="#" class="btn btn-info btn-sm">View</a>
 
                                         @if ($task->status == 'pending')
-                                            <a href="#" class="btn btn-success btn-sm">Mask as Done</a>
+                                            <a href="{{ route('tasks.done', $task->id) }}" class="btn btn-success btn-sm">Mask as Done</a>
                                         @else
-                                            <a href="#" class="btn btn-warning btn-sm">Mask as Pending</a>
+                                            <a href="{{ route('tasks.pending', $task->id) }}" class="btn btn-warning btn-sm">Mask as Pending</a>
                                         @endif
 
                                         <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning btn-sm">Edit</a>
