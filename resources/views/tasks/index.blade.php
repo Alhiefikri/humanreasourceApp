@@ -35,8 +35,12 @@
                 <div class="card-body">
 
                     <div class="d-flex">
-                        <a href="#" class="btn btn-primary mb-3 ms-auto">New Task</a>
+                        <a href="{{ route('tasks.create') }}" class="btn btn-primary mb-3 ms-auto">New Task</a>
                     </div>
+
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert">{{ session('success') }}</div>
+                    @endif
 
                     <table class="table table-striped" id="table1">
                         <thead>
@@ -71,11 +75,11 @@
                                         <a href="#" class="btn btn-info btn-sm">View</a>
 
                                         @if ($task->status == 'pending')
-                                        <a href="#" class="btn btn-success btn-sm">Mask as Done</a>
+                                            <a href="#" class="btn btn-success btn-sm">Mask as Done</a>
                                         @else
-                                        <a href="#" class="btn btn-warning btn-sm">Mask as Pending</a>
+                                            <a href="#" class="btn btn-warning btn-sm">Mask as Pending</a>
                                         @endif
-                                        
+
                                         <a href="#" class="btn btn-warning btn-sm">Edit</a>
                                         <a href="#" class="btn btn-danger btn-sm">Delete</a>
                                     </td>
