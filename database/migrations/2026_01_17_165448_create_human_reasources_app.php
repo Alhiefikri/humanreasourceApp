@@ -25,7 +25,7 @@ return new class extends Migration
 
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('title');
             $table->text('description')->nullable();
 
             $table->timestamps();
@@ -64,7 +64,7 @@ return new class extends Migration
         Schema::create('payroll', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employees');
-            $table->decimal('sallary', 10, 2);
+            $table->decimal('salary', 10, 2);
             $table->decimal('bonuses', 10, 2)->nullable();
             $table->decimal('deductions', 10, 2)->nullable();
             $table->decimal('net_salary', 10, 2);
