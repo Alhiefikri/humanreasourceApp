@@ -5,8 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Faker\Factory as Faker;
-use Carbon\Carbon;
+use Carbon\Carbon; // Tambahkan ini agar Carbon jalan
+use Faker\Factory as Faker; // Tambahkan ini agar Faker jalan
 
 
 class HumanResourcesSeeder extends Seeder
