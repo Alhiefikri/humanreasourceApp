@@ -20,7 +20,7 @@ class HumanResourcesSeeder extends Seeder
 
         DB::table('departments')->insert([
             [
-                'name' => 'HR',
+                'namcleae' => 'HR',
                 'description' => 'Departmen Human Resources',
                 'status' => 'active',
                 'created_at' => Carbon::now(),
