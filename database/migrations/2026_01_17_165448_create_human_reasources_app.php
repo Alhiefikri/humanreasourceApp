@@ -40,7 +40,7 @@ return new class extends Migration
             $table->string('address');
             $table->date('birth_date');
             $table->date('hire_date');
-            $table->foreignId('departement_id')->constrained('departments');
+            $table->foreignId('department_id')->constrained('departments');
             $table->foreignId('role_id')->constrained('roles');
             $table->string('status');
             $table->decimal('salary', 10, 2);
@@ -108,7 +108,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('employees');
-        Schema::dropIfExists('departements');
+        Schema::dropIfExists('departments');
         Schema::dropIfExists('roles');
         Schema::dropIfExists('tasks');
         Schema::dropIfExists('payroll');

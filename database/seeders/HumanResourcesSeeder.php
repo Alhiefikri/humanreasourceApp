@@ -20,7 +20,7 @@ class HumanResourcesSeeder extends Seeder
 
         DB::table('departments')->insert([
             [
-                'namcleae' => 'HR',
+                'name' => 'HR',
                 'description' => 'Departmen Human Resources',
                 'status' => 'active',
                 'created_at' => Carbon::now(),
@@ -69,7 +69,7 @@ class HumanResourcesSeeder extends Seeder
                 'address' => $faker->address,
                 'birth_date' => $faker->dateTimeBetween('-40 years', '-20 years'),
                 'hire_date' => Carbon::now(),
-                'departement_id' => 1,
+                'department_id' => 1,
                 'role_id' => 1,
                 'status' => 'active',
                 'salary' => $faker->randomFloat(2, 3000, 6000),
@@ -85,7 +85,7 @@ class HumanResourcesSeeder extends Seeder
                 'address' => $faker->address,
                 'birth_date' => $faker->dateTimeBetween('-40 years', '-20 years'),
                 'hire_date' => Carbon::now(),
-                'departement_id' => 2,
+                'department_id' => 2,
                 'role_id' => 2,
                 'status' => 'active',
                 'salary' => $faker->randomFloat(2, 3000, 6000),
