@@ -72,7 +72,7 @@
                                     </td>
 
                                     <td>
-                                        <a href="#" class="btn btn-info btn-sm">View</a>
+                                        <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-info btn-sm">View</a>
 
                                         @if ($task->status == 'pending')
                                             <a href="{{ route('tasks.done', $task->id) }}" class="btn btn-success btn-sm">Mask as Done</a>
