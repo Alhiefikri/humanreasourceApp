@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PressenceController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskController;
 
@@ -22,6 +23,9 @@ Route::resource('/departments', DepartmentController::class);
 
 // Handle roles
 Route::resource('/roles', RoleController::class);
+
+// Handle Pressences
+Route::resource('/pressences', PressenceController::class);
 
 //  Handle tasks
 Route::resource('/tasks', TaskController::class);

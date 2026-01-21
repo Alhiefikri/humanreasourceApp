@@ -179,6 +179,11 @@
         let date = flatpickr('.date',{
             dateFormat: "Y-m-d",
         })
+
+        let dateTime = flatpickr('.datetime',{
+            dateFormat: "Y-m-d H:i:s",
+            enableTime: true
+        })
     </script>
 
 </body>
