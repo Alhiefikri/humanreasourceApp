@@ -34,10 +34,6 @@
                 </div>
                 <div class="card-body">
 
-                    <div class="d-flex">
-                        <a href="{{ route('tasks.create') }}" class="btn btn-primary mb-3 ms-auto">New Task</a>
-                    </div>
-
                     <form action="{{ route('tasks.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
