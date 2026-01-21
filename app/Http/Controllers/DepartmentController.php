@@ -40,13 +40,6 @@ class DepartmentController extends Controller
         return redirect()->route('departments.index')->with('success', 'Department created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
