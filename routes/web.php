@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\LeaveRequestController;
 use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\PressenceController;
 use App\Http\Controllers\RoleController;
@@ -30,6 +31,11 @@ Route::resource('/pressences', PressenceController::class);
 
 // Handle Payrolls
 Route::resource('/payrolls', PayrollController::class);
+
+// Handle Leave Request
+Route::resource('/leave-requests', LeaveRequestController::class);
+Route::get('leave-requests/approve/{id}', [LeaveRequestController::class, 'approve'])->name('leave-requests.approve');
+Route::get('leave-requests/reject/{id}', [LeaveRequestController::class, 'reject'])->name('leave-requests.reject');
 
 //  Handle tasks
 Route::resource('/tasks', TaskController::class);
