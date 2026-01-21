@@ -121,7 +121,7 @@ class HumanResourcesSeeder extends Seeder
             ]
         ]);
 
-        DB::table('payroll')->insert([
+        DB::table('payrolls')->insert([
             [
                 'employee_id' => 1,
                 'salary' => $faker->randomFloat(2, 3000, 6000),

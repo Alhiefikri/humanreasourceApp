@@ -61,7 +61,7 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('payroll', function (Blueprint $table) {
+        Schema::create('payrolls', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employees');
             $table->decimal('salary', 10, 2);
@@ -78,8 +78,8 @@ return new class extends Migration
         Schema::create('pressences', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employees');
-            $table->date('check_in');
-            $table->date('check_out');
+            $table->datetimes('check_in');
+            $table->datetimes('check_out');
             $table->date('date');
             $table->string('status');
 
