@@ -11,11 +11,15 @@ class PayrollController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Payroll $payroll, Employee $employee)
+    public function index()
     {
-        $employees = Employee::all();
-        $payrolls = Payroll::all();
-        return view('payrolls.index', compact('payrolls', 'employees'));
+        if (session('role') == 'HR') {
+            $payrolls = Payroll::all();
+        } else {
+            $employees = Employee::where('id', session('employee_id'))->get();
+            $payrolls = Payroll::where('employee_id', session('employee_id'))->get();
+        }
+        return view('payrolls.index', compact('payrolls'));
     }
 
     /**

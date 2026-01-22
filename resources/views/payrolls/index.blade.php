@@ -34,9 +34,11 @@
                 </div>
                 <div class="card-body">
 
-                    <div class="d-flex">
-                        <a href="{{ route('payrolls.create') }}" class="btn btn-primary mb-3 ms-auto">New Payroll</a>
-                    </div>
+                    @if (session('role') == 'HR')
+                        <div class="d-flex">
+                            <a href="{{ route('payrolls.create') }}" class="btn btn-primary mb-3 ms-auto">New Payroll</a>
+                        </div>
+                    @endif
 
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">{{ session('success') }}</div>
@@ -64,24 +66,26 @@
                                     <td>Rp. {{ number_format($payroll->net_salary) }}</td>
                                     <td>{{ \Carbon\Carbon::parse($payroll->pay_date)->format('d F Y') }}</td>
                                     <td>
-                                         <a href="{{ route('payrolls.show', $payroll->id) }}"
+                                        <a href="{{ route('payrolls.show', $payroll->id) }}"
                                             class="btn btn-icon btn-primary">
                                             {{-- icon cetak --}}
                                             <i class="bi bi-printer"></i>
                                         </a>
-                                        <a href="{{ route('payrolls.edit', $payroll->id) }}"
-                                            class="btn btn-icon btn-warning">
-                                            <i class="bi bi-pencil"></i>
-                                        </a>
-                                        <form action="{{ route('payrolls.destroy', $payroll->id) }}" method="POST"
-                                            style="display: inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-icon btn-danger"
-                                                onclick="return confirm('Are you sure you want to delete this employee?')">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </form>
+                                        @if (session('role') == 'HR')
+                                            <a href="{{ route('payrolls.edit', $payroll->id) }}"
+                                                class="btn btn-icon btn-warning">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                            <form action="{{ route('payrolls.destroy', $payroll->id) }}" method="POST"
+                                                style="display: inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-icon btn-danger"
+                                                    onclick="return confirm('Are you sure you want to delete this employee?')">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
