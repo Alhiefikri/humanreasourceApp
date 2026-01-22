@@ -74,64 +74,104 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item active ">
-                            <a href="index.html" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
+                        @if (session('role') == 'HR')
+                            <li class="sidebar-item active ">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span>Tasks</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i class="bi bi-people-fill"></i>
+                                    <span>Employees</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i class="bi bi-briefcase-fill"></i>
+                                    <span>Departments</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i class="bi bi-tag-fill"></i>
+                                    <span>Roles</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i class="bi bi-table"></i>
+                                    <span>Presence</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i class="bi bi-currency-dollar"></i>
+                                    <span>Payrolls</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i class="bi bi-shift-fill"></i>
+                                    <span>Leave Requests</span>
+                                </a>
+                            </li>
+                        @endif
+
+                        @if (in_array(session('role'), ['Developer', 'Sales', 'Data Entry']))
+                            <li class="sidebar-item active ">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span>Tasks</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i class="bi bi-table"></i>
+                                    <span>Presence</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i class="bi bi-currency-dollar"></i>
+                                    <span>Payrolls</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-item">
+                                <a href="index.html" class='sidebar-link'>
+                                    <i class="bi bi-shift-fill"></i>
+                                    <span>Leave Requests</span>
+                                </a>
+                            </li>
+                        @endif
+
 
                         <li class="sidebar-item">
-                            <a href="index.html" class='sidebar-link'>
-                                <i class="bi bi-check-circle-fill"></i>
-                                <span>Tasks</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a href="index.html" class='sidebar-link'>
-                                <i class="bi bi-people-fill"></i>
-                                <span>Employees</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a href="index.html" class='sidebar-link'>
-                                <i class="bi bi-briefcase-fill"></i>
-                                <span>Departments</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a href="index.html" class='sidebar-link'>
-                                <i class="bi bi-tag-fill"></i>
-                                <span>Roles</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a href="index.html" class='sidebar-link'>
-                                <i class="bi bi-table"></i>
-                                <span>Presence</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a href="index.html" class='sidebar-link'>
-                                <i class="bi bi-currency-dollar"></i>
-                                <span>Payrolls</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a href="index.html" class='sidebar-link'>
-                                <i class="bi bi-shift-fill"></i>
-                                <span>Leave Requests</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="{{ url('/logout') }}" class='sidebar-link'>
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Logout</span>
                             </a>
@@ -176,11 +216,11 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script>
-        let date = flatpickr('.date',{
+        let date = flatpickr('.date', {
             dateFormat: "Y-m-d",
         })
 
-        let dateTime = flatpickr('.datetime',{
+        let dateTime = flatpickr('.datetime', {
             dateFormat: "Y-m-d H:i:s",
             enableTime: true
         })
