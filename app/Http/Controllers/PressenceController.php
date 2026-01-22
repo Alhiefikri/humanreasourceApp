@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use App\Models\Pressence;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+
+
 
 class PressenceController extends Controller
 {
@@ -13,7 +16,11 @@ class PressenceController extends Controller
      */
     public function index(Pressence $pressence)
     {
-        $pressences = Pressence::all();
+        if (session('role') == 'HR') {
+            $pressences = Pressence::all();
+        } else {
+            $pressences = Pressence::where('employee_id', session('employee_id'))->get();
+        }
         return view('pressences.index', compact('pressences'));
     }
 
@@ -31,17 +38,29 @@ class PressenceController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'employee_id' => 'required|string',
-            'check_in' => 'required',
-            'check_out' => 'required',
-            'date' => 'required|date',
-            'status' => 'required|string',
-        ]);
+        if (session('role') == 'HR') {
+            $validated = $request->validate([
+                'employee_id' => 'required|string',
+                'check_in' => 'required',
+                'check_out' => 'required',
+                'date' => 'required|date',
+                'status' => 'required|string',
+            ]);
+            Pressence::create($validated);
+        } else {
+            Pressence::create([
+                'employee_id' => session('employee_id'),
+                'check_in' => Carbon::now()->format('Y-m-d H:i:s'),
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
+                'date' => Carbon::now()->format('Y-m-d'),
+                'status' => 'present',
+            ]);
+        }
 
-        Pressence::create($validated);
 
-        return redirect()->route('pressences.index')->with('success', 'Pressence created successfully');
+
+        return redirect()->route('pressences.index')->with('success', 'Pressence Recorded successfully');
     }
 
     /**

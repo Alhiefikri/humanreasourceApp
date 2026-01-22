@@ -50,7 +50,9 @@
                                 <th>Check Out</th>
                                 <th>Date</th>
                                 <th>Status</th>
+                                 @if (session('role')== 'HR')
                                 <th>Actions</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -69,6 +71,7 @@
                                         @endif
                                     </td>
                                     <td>
+                                        @if (session('role')== 'HR')
                                         <a href="{{ route('pressences.edit', $pressence->id) }}"
                                             class="btn btn-icon btn-warning">
                                             <i class="bi bi-pencil"></i>
@@ -82,6 +85,7 @@
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                         </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

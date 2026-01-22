@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(['role:HR,Developer,Sales,Data Entry']);
 
     // Handle employees
     Route::resource('/employees', EmployeeController::class)->middleware(['role:HR']);
@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
 
     //  Handle tasks
     Route::resource('/tasks', TaskController::class)->middleware(['role:HR,Developer,Sales,Data Entry']);
-    Route::get('tasks/done/{id}', [TaskController::class, 'done'])->name('tasks.done')->middleware(['role:HR']);
+    Route::get('tasks/done/{id}', [TaskController::class, 'done'])->name('tasks.done')->middleware(['role:HR,Developer,Sales,Data Entry']);
     Route::get('tasks/pending/{id}', [TaskController::class, 'pending'])->name('tasks.pending')->middleware(['role:HR']);
 });
 
