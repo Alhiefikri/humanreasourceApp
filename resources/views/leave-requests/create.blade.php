@@ -36,6 +36,7 @@
 
                     <form action="{{ route('leave-requests.store') }}" method="POST">
                         @csrf
+                        @if (session('role') == 'HR')
                         <div class="mb-3">
                             <label for="employee" class="form-label">Employee</label>
                             <select name="employee_id" id="employee_id"
@@ -48,6 +49,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                        @endif
 
                         {{-- Leave Type --}}
                         <div class="mb-3">

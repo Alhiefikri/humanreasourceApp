@@ -11,11 +11,14 @@ class LeaveRequestController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(LeaveRequest $leaveRequest, Employee $employee)
+    public function index(LeaveRequest $leaveRequest)
     {
-        $leaveRequests = LeaveRequest::all();
-        $employees = Employee::all();
-        return view('leave-requests.index', compact('leaveRequests', 'employees'));
+        if (session('role') == 'HR') {
+            $leaveRequests = LeaveRequest::all();
+        } else {
+            $leaveRequests = LeaveRequest::where('employee_id', session('employee_id'))->get();
+        }
+        return view('leave-requests.index', compact('leaveRequests'));
     }
 
     /**
@@ -33,17 +36,26 @@ class LeaveRequestController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'employee_id' => 'required|string',
-            'leave_type' => 'required|string',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
-        ]);
+        if (session('role') == 'HR') {
+            $validated = $request->validate([
+                'employee_id' => 'required|string',
+                'leave_type' => 'required|string',
+                'start_date' => 'required|date',
+                'end_date' => 'required|date',
+            ]);
+            // default value pending
+            $validated['status'] = 'pending';
 
-        // default value pending
-        $validated['status'] = 'pending';
-
-        LeaveRequest::create($validated);
+            LeaveRequest::create($validated);
+        } else {
+            LeaveRequest::create([
+                'employee_id' => session('employee_id'),
+                'leave_type' => $request->leave_type,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
+                'status' => 'pending',
+            ]);
+        }
 
         return redirect()->route('leave-requests.index')->with('success', 'Leave request created successfully');
     }
@@ -93,7 +105,6 @@ class LeaveRequestController extends Controller
     {
         $leaveRequest = LeaveRequest::findorFail($id);
         // Jika status sudah bukan pending, jangan kasih approve lagi!
-
 
         $leaveRequest->update(['status' => 'rejected']);
         return redirect()->route('leave-requests.index')->with('success', 'Leave request rejected successfully');

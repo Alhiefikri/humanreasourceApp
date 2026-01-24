@@ -4,15 +4,12 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-
-
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -78,8 +75,8 @@ return new class extends Migration
         Schema::create('pressences', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employees');
-            $table->datetimes('check_in');
-            $table->datetimes('check_out');
+            $table->datetime('check_in');
+            $table->datetime('check_out');
             $table->date('date');
             $table->string('status');
 
@@ -100,19 +97,20 @@ return new class extends Migration
         });
     }
 
-
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
+        // Hapus anak-anaknya dulu (tabel yang punya foreignId)
+        Schema::dropIfExists('leave_requests');
+        Schema::dropIfExists('pressences');
+        Schema::dropIfExists('payrolls'); // Pastikan pakai 's' sesuai nama di up()
+        Schema::dropIfExists('tasks');
+
+        // Baru hapus tabel induknya
         Schema::dropIfExists('employees');
         Schema::dropIfExists('departments');
         Schema::dropIfExists('roles');
-        Schema::dropIfExists('tasks');
-        Schema::dropIfExists('payroll');
-        Schema::dropIfExists('pressences');
-        Schema::dropIfExists('leave_requests');
     }
 };

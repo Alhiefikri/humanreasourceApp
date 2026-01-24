@@ -12,7 +12,6 @@ class TaskController extends Controller
     public function index()
     {
         if (session('role') == 'HR') {
-
             $tasks = Task::all();
         } else {
             $tasks = Task::where('assigned_to', session('employee_id'))->get();

@@ -84,19 +84,16 @@
                                                 class="btn btn-warning btn-sm">Mask as Pending</a>
                                         @endif
 
-                                        @if(session('role') == 'HR')
+                                        @if (session('role') == 'HR')
+                                            <a href="{{ route('tasks.edit', $task->id) }}"
+                                                class="btn btn-warning btn-sm">Edit</a>
 
-                                        
-
-                                        <a href="{{ route('tasks.edit', $task->id) }}"
-                                            class="btn btn-warning btn-sm">Edit</a>
-
-                                        <form action="{{ route('tasks.destroy', $task->id) }}" method="POST"
-                                            style="display: inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                        </form>
+                                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST"
+                                                style="display: inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
                                         @endif
                                     </td>
                                 </tr>

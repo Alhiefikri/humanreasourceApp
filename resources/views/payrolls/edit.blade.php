@@ -54,7 +54,8 @@
 
                         <div class="mb-3">
                             <label for="salary" class="form-label">Salary</label>
-                            <input type="number" class="form-control" value="{{ old('salary', $payroll->salary) }}" name="salary" required>
+                            <input type="number" class="form-control" value="{{ old('salary', $payroll->salary) }}"
+                                name="salary" required>
                             @error('salary')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -62,7 +63,8 @@
 
                         <div class="mb-3">
                             <label for="bonuses" class="form-label">Bonuses</label>
-                            <input type="number" class="form-control" value="{{ old('bonuses', $payroll->bonuses) }}" name="bonuses" required>
+                            <input type="number" class="form-control" value="{{ old('bonuses', $payroll->bonuses) }}"
+                                name="bonuses" required>
                             @error('bonuses')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -70,8 +72,8 @@
 
                         <div class="mb-3">
                             <label for="deductions" class="form-label">Deductions</label>
-                            <input type="number" class="form-control" value="{{ old('deductions', $payroll->deductions) }}" name="deductions"
-                                required>
+                            <input type="number" class="form-control" value="{{ old('deductions', $payroll->deductions) }}"
+                                name="deductions" required>
                             @error('deductions')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -86,7 +88,6 @@
                             @enderror
                         </div>
 
-                        
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <a href="{{ route('payrolls.index') }}" class="btn btn-secondary">Back to List</a>
